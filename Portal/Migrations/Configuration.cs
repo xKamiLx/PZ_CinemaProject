@@ -5,7 +5,7 @@ namespace Portal.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<Portal.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Portal.Models.ApplicationDbContext>
     {
         public Configuration()
         {
