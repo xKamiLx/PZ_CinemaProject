@@ -10,6 +10,6 @@ namespace DAL.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime AddedDateTime { get; set; }
-        public ICollection<ApplicationUser> ApplicationUsers { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

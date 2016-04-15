@@ -10,5 +10,6 @@ namespace DAL.Models
         public string Description { get; set; }
         public DateTime DateTimeShow { get; set; }
         public ICollection<Room> Rooms { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }
