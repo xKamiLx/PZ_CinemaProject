@@ -13,6 +13,7 @@ namespace DAL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Portal.Models.ApplicationDbContext context)
