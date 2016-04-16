@@ -1,3 +1,6 @@
+using DAL.Models;
+using Portal.Models;
+
 namespace DAL.Migrations
 {
     using System;
@@ -14,6 +17,7 @@ namespace DAL.Migrations
 
         protected override void Seed(Portal.Models.ApplicationDbContext context)
         {
+            InitializeShows(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -26,6 +30,22 @@ namespace DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+        }
+
+        public void InitializeShows(ApplicationDbContext context)
+        {
+            if (context.Shows == null || !context.Shows.Any())
+            {
+                Show show1 = new Show()
+                {
+                    Id = 1,
+                    Title = "Nienawistna osemka",
+                    Description = "Example",
+                    DateTimeShow = DateTime.Now,
+                };
+                context.Shows.Add(show1);
+                context.SaveChanges();
+            }
         }
     }
 }
