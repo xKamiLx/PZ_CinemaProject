@@ -235,10 +235,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+=======
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
