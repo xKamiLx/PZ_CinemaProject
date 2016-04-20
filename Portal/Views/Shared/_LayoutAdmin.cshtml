@@ -3,5 +3,71 @@
     ViewBag.Title = "_LayoutAdmin";
 }
 
-<h2>_LayoutAdmin</h2>
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    @Styles.Render("~/Content/sidebar.css")
+    @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+    
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="@Url.Action("Index", "News")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Admin Panel
+                    </a>
+                </liclass="sidebar-brand">
+                <li>
+                    <a href="@Url.Action("Index", "News/Create")">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Create
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "News/Delete")">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Delete
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "News/Edit")">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Edit
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container body-content">
+                @RenderBody()
+
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+        <hr />
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
