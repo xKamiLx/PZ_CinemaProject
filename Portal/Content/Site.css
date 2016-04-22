@@ -11,7 +11,7 @@
             color: #e1ffff;
         }
         .nav-side-menu .brand {
-            background-color: #23282e;
+            background-color: #23282;
             line-height: 50px;
             display: block;
             text-align: center;
@@ -27,19 +27,6 @@
             margin: 0px;
             line-height: 35px;
             cursor: pointer;
-            /*
-              .collapsed{
-                 .arrow:before{
-                           font-family: FontAwesome;
-                           content: "\f053";
-                           display: inline-block;
-                           padding-left:10px;
-                           padding-right: 10px;
-                           vertical-align: middle;
-                           float:right;
-                      }
-               }
-          */
         }
         .nav-side-menu ul :not(collapsed) .arrow:before,
         .nav-side-menu li :not(collapsed) .arrow:before {
@@ -66,7 +53,7 @@
         }
         .nav-side-menu ul .sub-menu li,
         .nav-side-menu li .sub-menu li {
-            background-color: #181c20;
+            background-color: #2E353D;
             border: none;
             line-height: 28px;
             border-bottom: 1px solid #23282e;
@@ -75,6 +62,7 @@
         .nav-side-menu ul .sub-menu li:hover,
         .nav-side-menu li .sub-menu li:hover {
             background-color: #020203;
+            margin-left: -1px;
         }
         .nav-side-menu ul .sub-menu li:before,
         .nav-side-menu li .sub-menu li:before {
