@@ -15,6 +15,7 @@ namespace Portal.Models
         public DbSet<News> Newses { get; set; }
         public DbSet<Show> Shows { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Movie> Movies { get; set; }
 
         public ApplicationDbContext() : base("DefaultConnection")
         {
@@ -24,5 +25,6 @@ namespace Portal.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

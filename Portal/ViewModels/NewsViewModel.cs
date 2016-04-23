@@ -9,6 +9,15 @@ namespace Portal.ViewModels
 {
     public class NewsViewModel
     {
+        //TODO
+        //MaQ read about Attributes, and use them to this properties
+        //http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validation-to-the-model
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime AddedDateTime { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public NewsViewModel()
         {
         }
@@ -20,15 +29,5 @@ namespace Portal.ViewModels
             AddedDateTime = news.AddedDateTime;
             ApplicationUser = news.ApplicationUser;
         }
-
-        //TODO
-        //MaQ read about Attributes, and use them to this properties
-        //http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validation-to-the-model
-
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime AddedDateTime { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
