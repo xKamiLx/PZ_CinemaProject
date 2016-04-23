@@ -10,6 +10,6 @@ namespace DAL.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public virtual Show Show { get; set; }
+        public ICollection<Show> Shows { get; set; }
     }
 }
