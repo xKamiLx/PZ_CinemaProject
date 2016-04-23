@@ -11,17 +11,86 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    @Styles.Render("~/Content/sidebar.css")
+    @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 
 <body>
-    
-    <div id="wrapper">
+   
+        <div class="row">
+            <div class="col-md-2">
 
-        <!-- Sidebar -->
+                <!--Sidebar-->
+
+                <div class="nav-side-menu">
+                    <div class="brand">
+                        <a href="@Url.Action("Index", "News")"><span class="glyphicon glyphicon-home"></span>
+                         Admin Panel
+                        </a>
+                    </div>
+
+                    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                    <div class="menu-list">
+
+                        <ul id="menu-content" class="menu-content collapse out">
+                           
+                            <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                                <a href="#"><i class="fa fa-gift fa-lg"></i>Shows<span class="glyphicon glyphicon-chevron-down down"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="products">
+
+                                <li>
+                                    <a href="@Url.Action("Index", "News/Create")">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        Create
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                                <a href="#"><i class="fa fa-globe fa-lg"></i>News<span class="glyphicon glyphicon-chevron-down down2"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="service">
+
+                                    <li>
+                                        <a href="@Url.Action("Index", "News/Create")">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                            Create
+                                        </a>
+                                    </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--End of Sidebar-->
+
+            <!--Main content-->
+            <div class="col-md-offset-1">
+                <div id="page-content-wrapper">
+                    <div class="container body-content">
+                        @RenderBody()
+
+                    </div>
+                </div>
+                <!-- /#page-content-wrapper -->
+                <hr />
+                <footer class="text-center">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+        </div>
+    
+    
+  
+    
+
+        <!-- Sidebar
 
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -30,7 +99,7 @@
                         <span class="glyphicon glyphicon-home"></span>
                         Admin Panel
                     </a>
-                </liclass="sidebar-brand">
+                </li class="sidebar-brand">
                 <li>
                     <a href="@Url.Action("Index", "News/Create")">
                         <span class="glyphicon glyphicon-plus"></span>
@@ -53,18 +122,9 @@
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container body-content">
-                @RenderBody()
-
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-        <hr />
-        <footer class="text-center">
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>    
+    
+        
+    <!--</div>   --> 
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
