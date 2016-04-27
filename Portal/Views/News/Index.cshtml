@@ -1,48 +1,41 @@
-﻿@model IEnumerable<Portal.ViewModels.NewsViewModel>
+﻿    @model IEnumerable<Portal.ViewModels.NewsViewModel>
 
-@{
-    ViewBag.Title = "Index";
-}
+    @{
+        ViewBag.Title = "Index";
+    }
 
 
-@{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+    @{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddedDateTime)
-        </th>
-        <th></th>
-    </tr>
+    <h2 class="intro-text text-center">Wpisy</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddedDateTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+        <table class="table table-hover news">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.AddedDateTime)</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddedDateTime)
+                        </td>
+                        <td>
+                            <a class="EditButton" href="@Url.Action("Edit", new { id = item.Id })" ><span class="glyphicon glyphicon-edit"></span></a><a class="DeleteButton" href="@Url.Action("Delete", new { id = item.Id })"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>

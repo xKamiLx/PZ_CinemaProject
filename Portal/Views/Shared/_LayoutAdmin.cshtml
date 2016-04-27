@@ -38,28 +38,28 @@
                         <ul id="menu-content" class="menu-content collapse out">
                            
                             <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                                <a href="#"><i class="fa fa-gift fa-lg"></i>Shows<span class="glyphicon glyphicon-chevron-down down"></span></a>
+                                <a href="#"><i class="fa fa-gift fa-lg"></i>Filmy<span class="glyphicon glyphicon-chevron-down down"></span></a>
                             </li>
                             <ul class="sub-menu collapse" id="products">
 
                                 <li>
                                     <a href="@Url.Action("Index", "News/Create")">
                                         <span class="glyphicon glyphicon-plus"></span>
-                                        Create
+                                        Dodaj
                                     </a>
                                 </li>
                             </ul>
 
 
                             <li data-toggle="collapse" data-target="#service" class="collapsed">
-                                <a href="#"><i class="fa fa-globe fa-lg"></i>News<span class="glyphicon glyphicon-chevron-down down2"></span></a>
+                                <a href="#"><i class="fa fa-globe fa-lg"></i>Wpisy<span class="glyphicon glyphicon-chevron-down down2"></span></a>
                             </li>
                             <ul class="sub-menu collapse" id="service">
 
                                     <li>
                                         <a href="@Url.Action("Index", "News/Create")">
                                             <span class="glyphicon glyphicon-plus"></span>
-                                            Create
+                                            Dodaj
                                         </a>
                                     </li>
                             </ul>
@@ -71,7 +71,7 @@
             <!--End of Sidebar-->
 
             <!--Main content-->
-            <div class="col-md-offset-1">
+            <div class="col-md-offset-3">
                 <div id="page-content-wrapper">
                     <div class="container body-content">
                         @RenderBody()
@@ -80,7 +80,7 @@
                 </div>
                 <!-- /#page-content-wrapper -->
                 <hr />
-                <footer class="text-center">
+                <footer class="create">
                     <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
                 </footer>
             </div>

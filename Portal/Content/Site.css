@@ -135,10 +135,34 @@
 
         .down
         {
-            margin-left:200px;
+            margin-left:211px;
         }
         .down2
         {
-            margin-left:207px;
+            margin-left:203px;
+        }
+        .create
+        {
+            text-align: center;
         }
        
+        .create h2
+        {
+            font-weight: bold;
+        }
+        .news th tr
+        {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-align:center;
+        }
+        .EditButton
+        {
+            color:yellowgreen;
+            margin-right: 5px;
+        }
+        .DeleteButton
+        {
+            color: red;
+        }
+        
