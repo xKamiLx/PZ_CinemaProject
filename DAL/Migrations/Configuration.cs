@@ -19,6 +19,7 @@ namespace DAL.Migrations
         protected override void Seed(Portal.Models.ApplicationDbContext context)
         {
             InitializeRooms(context);
+            InitializeRoles(context);
 
             //  This method will be called after migrating to the latest version.
 
@@ -68,6 +69,17 @@ namespace DAL.Migrations
                 context.Rooms.Add(room3);
                 context.Rooms.Add(room4);
                 context.Rooms.Add(room5);
+                context.SaveChanges();
+            }
+        }
+        private void InitializeRoles(ApplicationDbContext context)
+        {
+            if (context.Roles == null || !context.Roles.Any())
+            {
+                CustomRole role1 = new CustomRole("U¿ytkownik");
+                CustomRole role2 = new CustomRole("Administrator");
+                context.Roles.Add(role1);
+                context.Roles.Add(role2);
                 context.SaveChanges();
             }
         }

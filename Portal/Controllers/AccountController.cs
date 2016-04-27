@@ -154,6 +154,15 @@ namespace Portal.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                //add role to user
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    CustomRole role = context.Roles.Find(1);
+                    UserManager.AddToRole(user.Id, role.Name);
+                }
+                //
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -482,5 +491,11 @@ namespace Portal.Controllers
             }
         }
         #endregion
+
+        public ActionResult LogOffForTests()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

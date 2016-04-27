@@ -25,6 +25,5 @@ namespace Portal.Models
         {
             return new ApplicationDbContext();
         }
-
     }
 }

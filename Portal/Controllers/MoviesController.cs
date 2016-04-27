@@ -12,6 +12,7 @@ using Portal.ViewModels;
 
 namespace Portal.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class MoviesController : BaseController
     {
         // GET: Movies
