@@ -10,6 +10,7 @@
 
     <h2 class="intro-text text-center">Wpisy</h2>
 
+<<<<<<< HEAD
         <table class="table table-hover news">
             <thead>
                 <tr>
@@ -39,3 +40,24 @@
                 }
             </tbody>
         </table>
+=======
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddedDateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+>>>>>>> origin/master

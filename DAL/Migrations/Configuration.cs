@@ -18,7 +18,9 @@ namespace DAL.Migrations
 
         protected override void Seed(Portal.Models.ApplicationDbContext context)
         {
-            InitializeShows(context);
+            InitializeRooms(context);
+            InitializeRoles(context);
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -33,18 +35,51 @@ namespace DAL.Migrations
             //
         }
 
-        public void InitializeShows(ApplicationDbContext context)
+        private void InitializeRooms(ApplicationDbContext context)
         {
-            if (context.Shows == null || !context.Shows.Any())
+            if (context.Rooms == null || !context.Rooms.Any())
             {
-                Show show1 = new Show()
+                Room room1 = new Room()
                 {
                     Id = 1,
-                    Title = "Nienawistna osemka",
-                    Description = "Example",
-                    DateTimeShow = DateTime.Now,
+                    Name = "Sala 1"
                 };
-                context.Shows.Add(show1);
+                Room room2 = new Room()
+                {
+                    Id = 2,
+                    Name = "Sala 2"
+                };
+                Room room3 = new Room()
+                {
+                    Id = 3,
+                    Name = "Sala 3"
+                };
+                Room room4 = new Room()
+                {
+                    Id = 4,
+                    Name = "Sala 4"
+                };
+                Room room5 = new Room()
+                {
+                    Id = 5,
+                    Name = "Sala 5"
+                };
+                context.Rooms.Add(room1);
+                context.Rooms.Add(room2);
+                context.Rooms.Add(room3);
+                context.Rooms.Add(room4);
+                context.Rooms.Add(room5);
+                context.SaveChanges();
+            }
+        }
+        private void InitializeRoles(ApplicationDbContext context)
+        {
+            if (context.Roles == null || !context.Roles.Any())
+            {
+                CustomRole role1 = new CustomRole("U¿ytkownik");
+                CustomRole role2 = new CustomRole("Administrator");
+                context.Roles.Add(role1);
+                context.Roles.Add(role2);
                 context.SaveChanges();
             }
         }

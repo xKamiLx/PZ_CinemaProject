@@ -1,118 +1,118 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using DAL.Models;
+using Portal.Models;
 using Portal.ViewModels;
 
 namespace Portal.Controllers
 {
     [Authorize(Roles = "Administrator")]
-    public class NewsController : BaseController
+    public class MoviesController : BaseController
     {
-        // GET: News
+        // GET: Movies
         public ActionResult Index()
         {
-            List<News> dbNewses = Db.Newses.ToList();
-            List<NewsViewModel> newses = dbNewses.Select(dbNews => new NewsViewModel(dbNews)).ToList();
+            List<Movie> dbMovies = Db.Movies.ToList();
+            List<MovieViewModel> movies = dbMovies.Select(dbMovie => new MovieViewModel(dbMovie)).ToList();
 
-            return View(newses);
+            return View(movies);
         }
 
-        // GET: News/Create
+        // GET: Movies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: News/Create
+        // POST: Movies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NewsViewModel newsViewModel)
+        public ActionResult Create(MovieViewModel movieViewModel)
         {
             if (ModelState.IsValid)
             {
-                News news = new News()
+                Movie movie = new Movie()
                 {
-                    Title = newsViewModel.Title,
-                    Description = newsViewModel.Description,
-                    AddedDateTime = DateTime.Now,
-                    ApplicationUser = Db.Users.First(x => x.UserName == User.Identity.Name)
+                    Title = movieViewModel.Title,
+                    Description = movieViewModel.Description
                 };
-                Db.Newses.Add(news);
+                Db.Movies.Add(movie);
                 Db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View(newsViewModel);
+            return View(movieViewModel);
         }
 
-        // GET: News/Edit/5
+        // GET: Movies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = Db.Newses.Find(id);
-            if (news == null)
+            Movie movie = Db.Movies.Find(id);
+            if (movie == null)
             {
                 return HttpNotFound();
             }
-            NewsViewModel newsViewModel = new NewsViewModel(news);
-            return View(newsViewModel);
+            MovieViewModel movieViewModel = new MovieViewModel(movie);
+            return View(movieViewModel);
         }
 
-        // POST: News/Edit/5
+        // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(NewsViewModel newsViewModel)
+        public ActionResult Edit(MovieViewModel movieViewModel)
         {
             if (ModelState.IsValid)
             {
-                News news = Db.Newses.Find(newsViewModel.Id);
-                news.Title = newsViewModel.Title;
-                news.Description = newsViewModel.Description;
-                //news.AddedDateTime = newsViewModel.AddedDateTime;
-                //news.ApplicationUser = newsViewModel.ApplicationUser;
-                Db.Entry(news).State = EntityState.Modified;
+                Movie movie = Db.Movies.Find(movieViewModel.Id);
+                movie.Title = movieViewModel.Title;
+                movie.Description = movieViewModel.Description;
+                Db.Entry(movie).State = EntityState.Modified;
                 Db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            return View(newsViewModel);
+            return View(movieViewModel);
         }
 
-        // GET: News/Delete/5
+        // GET: Movies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = Db.Newses.Find(id);
-            if (news == null)
+            Movie movie = Db.Movies.Find(id);
+            if (movie == null)
             {
                 return HttpNotFound();
             }
-            NewsViewModel newsViewModel = new NewsViewModel(news);
-            return View(newsViewModel);
+            MovieViewModel movieViewModel = new MovieViewModel(movie);
+
+            return View(movieViewModel);
         }
 
-        // POST: News/Delete/5
+        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = Db.Newses.Find(id);
-            Db.Newses.Remove(news);
+            Movie movie = Db.Movies.Find(id);
+            Db.Movies.Remove(movie);
             Db.SaveChanges();
 
             return RedirectToAction("Index");

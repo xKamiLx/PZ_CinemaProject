@@ -97,6 +97,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Show.cs" />
