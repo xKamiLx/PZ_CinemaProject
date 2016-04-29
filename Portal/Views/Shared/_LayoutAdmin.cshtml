@@ -26,8 +26,8 @@
 
                 <div class="nav-side-menu">
                     <div class="brand">
-                        <a href="@Url.Action("Index", "News")"><span class="glyphicon glyphicon-home"></span>
-                         Admin Panel
+                        <a href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span>
+                         Home
                         </a>
                     </div>
 
@@ -43,7 +43,7 @@
                             <ul class="sub-menu collapse" id="products">
 
                                 <li>
-                                    <a href="@Url.Action("Index", "News", "Create")">
+                                    <a href="@Url.Action("Create", "Shows")">
                                         <span class="glyphicon glyphicon-plus"></span>
                                         Dodaj
                                     </a>
@@ -57,7 +57,7 @@
                             <ul class="sub-menu collapse" id="service">
 
                                     <li>
-                                        <a href="@Url.Action("Index", "News", "Create")">
+                                        <a href="@Url.Action("Create","News")">
                                             <span class="glyphicon glyphicon-plus"></span>
                                             Dodaj
                                         </a>
@@ -80,54 +80,12 @@
                 </div>
                 <!-- /#page-content-wrapper -->
                 <hr />
-                <footer class="create">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
             </div>
         </div>
-    
-    
-  
-    
-
-        <!-- Sidebar
-
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="@Url.Action("Index", "News")">
-                        <span class="glyphicon glyphicon-home"></span>
-                        Admin Panel
-                    </a>
-                </li class="sidebar-brand">
-                <li>
-                    <a href="@Url.Action("Index", "News", "Create")">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        Create
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "News", "Delete")">
-                        <span class="glyphicon glyphicon-trash"></span>
-                        Delete
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "News", "Edit")">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        Edit
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
-    
-        
-    <!--</div>   --> 
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap-datetimepicker.min")
     @RenderSection("scripts", required: false)
 </body>
 </html>

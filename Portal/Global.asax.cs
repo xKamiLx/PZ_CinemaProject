@@ -20,5 +20,9 @@ namespace Portal
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<ApplicationDbContext>(new MigrateDatabaseToLatestVersion<ApplicationDbContext, DAL.Migrations.Configuration>());
         }
+      
     }
+ 
+
+    
 }
