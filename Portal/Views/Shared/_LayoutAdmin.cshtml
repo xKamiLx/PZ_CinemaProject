@@ -13,6 +13,7 @@
     <title>Admin Panel</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/bootstrap-datetimepicker.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -41,9 +42,14 @@
                                 <a href="#"><i class="fa fa-gift fa-lg"></i>Filmy<span class="glyphicon glyphicon-chevron-down down"></span></a>
                             </li>
                             <ul class="sub-menu collapse" id="products">
-
                                 <li>
-                                    <a href="@Url.Action("Create", "Shows")">
+                                    <a href="@Url.Action("Index", "Movies")">
+                                        <span class="glyphicon glyphicon-hand-right"></span>
+                                        Wyświetl
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Create", "Movies")">
                                         <span class="glyphicon glyphicon-plus"></span>
                                         Dodaj
                                     </a>
@@ -55,14 +61,51 @@
                                 <a href="#"><i class="fa fa-globe fa-lg"></i>Wpisy<span class="glyphicon glyphicon-chevron-down down2"></span></a>
                             </li>
                             <ul class="sub-menu collapse" id="service">
-
-                                    <li>
-                                        <a href="@Url.Action("Create","News")">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                            Dodaj
-                                        </a>
-                                    </li>
+                                <li>
+                                    <a href="@Url.Action("Index","News")">
+                                        <span class="glyphicon glyphicon-hand-right"></span>
+                                        Wyświetl
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Create","News")">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        Dodaj
+                                    </a>
+                                </li>
                             </ul>
+
+                            <li data-toggle="collapse" data-target="#shows" class="collapsed">
+                                <a href="#"><i class="fa fa-globe fa-lg"></i>Seanse<span class="glyphicon glyphicon-chevron-down down3"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="shows">
+                                <li>
+                                    <a href="@Url.Action("Index","Shows")">
+                                        <span class="glyphicon glyphicon-hand-right"></span>
+                                        Wyświetl
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Create","Shows")">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        Dodaj
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <li data-toggle="collapse" data-target="#users" class="collapsed">
+                                <a href="#"><i class="fa fa-globe fa-lg"></i>Użytkownicy<span class="glyphicon glyphicon-chevron-down down4"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="users">
+
+                                <li>
+                                    <a href="@Url.Action("Index","Users")">
+                                        <span class="glyphicon glyphicon-hand-right"></span>
+                                        Wyświetl
+                                    </a>
+                                </li>
+                            </ul>
+
                         </ul>
                     </div>
                 </div>
@@ -85,7 +128,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/bootstrap-datetimepicker.min")
     @RenderSection("scripts", required: false)
 </body>
 </html>

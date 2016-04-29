@@ -135,12 +135,21 @@
 
         .down
         {
-            margin-left:211px;
+            margin-left:212px;
         }
         .down2
         {
-            margin-left:203px;
+            margin-left:205px;
         }
+        .down3
+        {
+            margin-left:195px;
+        }
+        .down4
+        {
+            margin-left:163px;
+        }
+
         .create
         {
             text-align: center;
