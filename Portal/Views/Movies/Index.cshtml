@@ -6,9 +6,9 @@
 
 @{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
 
-<h2 class="intro-text text-center">Filmy</h2>
+<h2 class = "intro-text text-center">Filmy</h2>
 
-<table class="table table-hover" >
+<table class = "table table-hover" >
     <thead>
         <tr>
             <th>
@@ -31,14 +31,9 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    <a class="EditButton" href="@Url.Action("Edit", new { id = item.Id })"><span class="glyphicon glyphicon-edit"></span></a><a class="DeleteButton" href="@Url.Action("Delete", new { id = item.Id })"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class = "EditButton" href = "@Url.Action("Edit", new { id = item.Id })"><span class = "glyphicon glyphicon-edit"></span></a><a class = "DeleteButton" href = "@Url.Action("Delete", new { id = item.Id })"><span class = "glyphicon glyphicon-remove"></span></a>
                 </td>
             </tr>
         }
-
     </tbody>
-    
-
-
-
 </table>

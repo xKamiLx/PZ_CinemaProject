@@ -80,7 +80,7 @@ namespace Portal.Controllers
                 News news = Db.Newses.Find(newsViewModel.Id);
                 news.Title = newsViewModel.Title;
                 news.Description = newsViewModel.Description;
-                news.AddedDateTime = newsViewModel.AddedDateTime;
+                news.AddedDateTime = DateTime.Now;
                 //news.ApplicationUser = newsViewModel.ApplicationUser;
                 Db.Entry(news).State = EntityState.Modified;
                 Db.SaveChanges();
