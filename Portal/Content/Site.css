@@ -150,15 +150,11 @@
             margin-left:163px;
         }
 
-        .create
+        .panel-heading
         {
             text-align: center;
         }
        
-        .create h2
-        {
-            font-weight: bold;
-        }
         .news th tr
         {
             margin-bottom: 20px;
@@ -173,5 +169,10 @@
         .DeleteButton
         {
             color: red;
+        }
+        .warning
+        {
+            margin-bottom: 40px;
+            text-align: center;
         }
         
