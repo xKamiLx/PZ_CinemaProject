@@ -6,29 +6,30 @@
 
 @{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
 
-<h2>Index</h2>
+<h2 class = "intro-text text-center">Seanse</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTimeShow)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTimeShow)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+<table class = "table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Data i Godzina Seansu
+            </th>
+            <th>
+                Akcje
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTimeShow)
+                </td>
+                <td>
+                    <a class = "EditButton" href = "@Url.Action("Edit", new { id = item.Id })"><span class = "glyphicon glyphicon-edit"></span></a><a class = "DeleteButton" href = "@Url.Action("Delete", new { id = item.Id })"><span class = "glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
