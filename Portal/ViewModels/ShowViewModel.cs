@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DAL.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Portal.ViewModels
 {
     public class ShowViewModel
     {
         public int Id { get; set; }
+
+        [Required]
         public DateTime DateTimeShow { get; set; }
+
         public Room Room { get; set; }
+
         public Movie Movie { get; set; }
 
         public int SelectedMovieId { get; set; }

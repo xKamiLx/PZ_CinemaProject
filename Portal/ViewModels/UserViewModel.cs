@@ -4,12 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Portal.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Portal.ViewModels
 {
     public class UserViewModel
     {
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string RoleName { get; set; }

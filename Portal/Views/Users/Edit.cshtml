@@ -30,7 +30,7 @@
                     </div>
                     <div class = "form-group">
                         <div class = "col-md-offset-6">
-                            @Html.LabelFor(model => model.RolesList, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.Label("Uprawnienia:")
                             @Html.DropDownListFor(model => model.SelectedRoleId, Model.RolesList, null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.RolesList, "", new { @class = "text-danger" })
                         </div>

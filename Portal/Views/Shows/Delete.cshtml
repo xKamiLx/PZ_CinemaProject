@@ -12,6 +12,8 @@
             <br />
             <div class = "alert alert-danger alert-dismissible warning" role = "alert">
                 <strong><h2>Uwaga!! </strong>Czy na pewno chcesz usunąć ten seans ?</h2>
+                <h3>Tytuł: @Html.DisplayFor(model => model.Movie.Title)</h3>
+                <h3>Sala: @Html.DisplayFor(model => model.Room.Name)</h3>
                 <h3>Data i Godzina Seansu: @Html.DisplayFor(model => model.DateTimeShow)</h3>
             </div>
             @using (Html.BeginForm())
