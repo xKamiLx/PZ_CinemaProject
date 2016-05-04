@@ -6,40 +6,48 @@
 
 @{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
 
-<h2>Edit</h2>
+<div class = "container">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ApplicationUser</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <h2 class = "panel-heading">Edycja Użytkownika</h2>
+    <hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class = "row">
+            <div class = "col-md-8">
+                <div class = "form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                            @Html.Label("Adres E-mail:")
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                            @Html.LabelFor(model => model.RolesList, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model => model.SelectedRoleId, Model.RolesList, null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RolesList, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                            <input type = "submit" value = "Zapisz" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RolesList, new {htmlAttributes = new {@class = "form-control"}})
-            @Html.DropDownListFor(model => model.SelectedRoleId, Model.RolesList, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.RolesList, "", new { @class = "text-danger"})
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+    }
+    <div>
+        @Html.ActionLink("Powrót do listy", "Index")
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@Scripts.Render("~/bundles/jqueryval")

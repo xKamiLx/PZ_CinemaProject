@@ -6,46 +6,66 @@
 
 @{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
 
-<h2>Edit</h2>
+<div class = "container">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Show</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <h2 class = "panel-heading">Edycja Seansu</h2>
+    <hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateTimeShow, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateTimeShow, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.DateTimeShow, "", new {@class = "text-danger"})
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class = "row">
+            <div class = "col-md-8">
+                <div class = "form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                           @Html.Label("Data i Czas Seansu:")                     
+                            <div class = "input-group date form_datetime" data-date = "" data-date-format = "yyyy MM dd - HH:ii p" data-link-field = "dtp_input1">
+                                @Html.TextBoxFor(model => model.DateTimeShow, new { @class = "form-control"})
+                                <span class = "input-group-addon"><span class = "glyphicon glyphicon-remove"></span></span>
+                                <span class = "input-group-addon"><span class = "glyphicon glyphicon-th"></span></span>
+                            </div>
+                            <input type = "hidden" id = "dtp_input1" value = "@Html.DisplayFor(model=>model.DateTimeShow,null)" />
+                        </div>
+                            @Html.ValidationMessageFor(model => model.DateTimeShow, "", new { @class = "text-danger" })
+                     </div>
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                            @Html.Label("Film:")
+                            @Html.DropDownListFor(x => x.SelectedMovieId, Model.MovieList, null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.MovieList, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                            @Html.Label("Sala:")
+                            @Html.DropDownListFor(x => x.SelectedRoomId, Model.RoomList, null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.RoomList, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class = "form-group">
+                        <div class = "col-md-offset-6">
+                            <input type = "submit" value = "Zapisz" class = "btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.MovieList, new { @class = "control-label" })
-            @Html.DropDownListFor(x => x.SelectedMovieId, Model.MovieList, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.MovieList, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.RoomList, new { @class = "control-label" })
-            @Html.DropDownListFor(x => x.SelectedRoomId, Model.RoomList, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.RoomList, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+    }
+    <div>
+        @Html.ActionLink("Powrót do listy", "Index")
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/datepicker")
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/picker.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.pl.js"></script>
+
