@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
+    <Compile Include="ViewModels\TicketsViewModel.cs" />
     <Compile Include="ViewModels\ShowViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
@@ -266,6 +268,8 @@
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Tickets\Buy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

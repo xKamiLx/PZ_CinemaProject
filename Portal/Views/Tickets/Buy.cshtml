@@ -1,0 +1,62 @@
+﻿@model Portal.ViewModels.TicketsViewModel
+@{
+    ViewBag.Title = "Kupno biletów";
+}
+
+@{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+
+<div class="container">
+
+    <h2 class="panel-heading">Kupno biletów na film: <b> @Html.DisplayTextFor(x => x.Movie.Title) </b> </h2>
+   
+    <p> String z zajętymi miejscami</p>
+    @Html.DisplayTextFor(x => x.Places)
+
+
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+
+                    <input id="1" type="button" value="1" class="btn btn-primary" />
+
+                    <input id="2" type="button" value="2" class="btn btn-primary" />
+
+                    <input id="3" type="button" value="3" class="btn btn-primary" />
+
+                    <input id="4" type="button" value="4" class="btn btn-primary" />
+
+                    <input id="5" type="button" value="5" class="btn btn-primary" />
+
+    
+
+                    <div class="form-group">
+                        <div class="col-md-offset-6">
+                            <input type="submit" value="Zapisz" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Powrót do listy", "Index")
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/datepicker")
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/picker.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.pl.js"></script>
+

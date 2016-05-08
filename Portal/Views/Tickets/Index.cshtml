@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Portal.ViewModels.ShowViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+
+<h2 class="intro-text text-center">Seanse</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Data i Godzina Seansu
+            </th>
+            <th>
+                Tytuł Filmu
+            </th>
+            <th>
+                Sala
+            </th>
+            <th>
+                Akcje
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTimeShow)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Name)
+                </td>
+                <td>
+                    <a class="EditButton" href="@Url.Action("Buy", new { id = item.Id })"><span class="glyphicon glyphicon-edit"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
