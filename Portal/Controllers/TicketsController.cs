@@ -105,13 +105,27 @@ namespace Portal.Controllers
 
                 // tworzenie nowego biletu
 
-               
-                // podmiana zajętych miejsc
+                /*
+                Ticket ticket = new Ticket()
+                {
+                    Place = 1,
+                    IsPaid = 0,
+                    Discount = 0,
+                    ApplicationUser = "1",
+                    Show = ticketsViewModel.Id,
+                };
+
+                Db.Tickets.Add(ticket);
+                Db.SaveChanges();
+        
+            */
+    
+    // podmiana zajętych miejsc
 
 
 
 
-                Db.Entry(show).State = EntityState.Modified;
+        Db.Entry(show).State = EntityState.Modified;
                 Db.SaveChanges();
 
                 return RedirectToAction("Index");

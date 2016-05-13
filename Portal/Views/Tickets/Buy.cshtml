@@ -25,16 +25,19 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.Id)
 
+                    
 
-                    <input id="1" type="button" value="1" class="btn btn-primary" />
+                    @for (int i = 1; i <= 50; i++)
+                    {
+                        <input id="@i" disabled="true" name="place_@i"type="button" value=@i class="btn btn-primary" />
+                        if (i % 10 == 0)
+                        { <br> }
+                                                
+                    }
 
-                    <input id="2" type="button" value="2" class="btn btn-primary" />
+                    
 
-                    <input id="3" type="button" value="3" class="btn btn-primary" />
 
-                    <input id="4" type="button" value="4" class="btn btn-primary" />
-
-                    <input id="5" type="button" value="5" class="btn btn-primary" />
 
     
 
