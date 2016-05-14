@@ -15,8 +15,11 @@ namespace Portal.ViewModels
         [Required]
         public DateTime DateTimeShow { get; set; }
 
+        public decimal Price { get; set; }
+
         public Room Room { get; set; }
 
+        [Required]
         public Movie Movie { get; set; }
 
         public int SelectedMovieId { get; set; }
@@ -33,6 +36,7 @@ namespace Portal.ViewModels
         {
             Id = show.Id;
             DateTimeShow = show.DateTimeShow;
+            Price = show.Price;
             Room = show.Room;
             Movie = show.Movie;
         }
