@@ -8,7 +8,9 @@
 <div class="container">
 
     <h2 class="panel-heading">Kupno biletów na film: <b> @Html.DisplayTextFor(x => x.Movie.Title) </b> </h2>
-   
+   @{string places = Model.Places; }
+
+
     <p> String z zajętymi miejscami</p>
     @Html.DisplayTextFor(x => x.Places)
 
@@ -27,9 +29,20 @@
 
                     
 
-                    @for (int i = 1; i <= 50; i++)
+                    @for (int i = 0; i <= 50; i++)
                     {
-                        <input id="@i" disabled="true" name="place_@i"type="button" value=@i class="btn btn-primary" />
+                        if (places[i] == '0')
+                        {
+                            <input id="@i" name="place_@i" type="button" value=@i class="btn btn-primary" />
+
+                        }
+
+                        if (places[i] == '1')
+                        {
+                            <input id="@i" disabled name="place_@i" type="button" value=@i class="btn btn-primary" />
+
+                        }
+
                         if (i % 10 == 0)
                         { <br> }
                                                 
