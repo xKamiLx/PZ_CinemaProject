@@ -14,7 +14,7 @@ namespace Portal.ViewModels
 
         [Required]
         public DateTime DateTimeShow { get; set; }
-
+        
         public Room Room { get; set; }
 
         public Movie Movie { get; set; }
