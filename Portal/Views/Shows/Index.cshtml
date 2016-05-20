@@ -21,6 +21,9 @@
                 Sala
             </th>
             <th>
+                Cena
+            </th>
+            <th>
                 Akcje
             </th>
         </tr>
@@ -37,6 +40,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Room.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
                     <a class = "EditButton" href = "@Url.Action("Edit", new { id = item.Id })"><span class = "glyphicon glyphicon-edit"></span></a><a class = "DeleteButton" href = "@Url.Action("Delete", new { id = item.Id })"><span class = "glyphicon glyphicon-remove"></span></a>

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using DAL.Models;
-using Portal.Models;
 using Portal.ViewModels;
 
 namespace Portal.Controllers
@@ -28,6 +25,7 @@ namespace Portal.Controllers
         public ActionResult Create()
         {
             ShowViewModel showViewModel = new ShowViewModel();
+            showViewModel.DateTimeShow = DateTime.Now;
             var moviesList = Db.Movies.Select(x => new SelectListItem()
             {
                 Text = x.Title,
@@ -58,6 +56,7 @@ namespace Portal.Controllers
                 Show show = new Show()
                 {
                     DateTimeShow = DateTime.Now,
+                    Price = 25.00m,
                     Places = "00000000000000000000000000000000000000000000000000",
                     Room = room,
                     Movie = movie,
@@ -67,6 +66,19 @@ namespace Portal.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            var moviesList = Db.Movies.Select(x => new SelectListItem()
+            {
+                Text = x.Title,
+                Value = x.Id.ToString()
+            }).ToList();
+            showViewModel.MovieList = moviesList;
+            var roomsList = Db.Rooms.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            }).ToList();
+            showViewModel.RoomList = roomsList;
 
             return View(showViewModel);
         }
