@@ -14,13 +14,9 @@ namespace Portal.ViewModels
 
         [Required]
         public DateTime DateTimeShow { get; set; }
-<<<<<<< HEAD
-        
-=======
 
         public decimal Price { get; set; }
 
->>>>>>> origin/master
         public Room Room { get; set; }
 
         [Required]
