@@ -8,34 +8,37 @@
 
 <h2 class = "intro-text text-center">Użytkownicy</h2>
 
-<table class = "table table-hover">
-    <thead>
-        <tr>
-            <th>
-                Adres E-mail
-            </th>
-            <th>
-                Uprawnienia
-            </th>
-            <th>
-                Akcje
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RoleName)
-                </td>
-                <td>
-                    <a class = "EditButton" href = "@Url.Action("Edit", new { id = item.Id })"><span class = "glyphicon glyphicon-edit"></span></a><a class = "DeleteButton" href = "@Url.Action("Delete", new { id = item.Id })"><span class = "glyphicon glyphicon-remove"></span></a>
-                </td>
+                <th>
+                    Adres E-mail
+                </th>
+                <th>
+                    Uprawnienia
+                </th>
+                <th>
+                    Akcje
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        <a class="EditButton" href="@Url.Action("Edit", new { id = item.Id })"><span class="glyphicon glyphicon-edit"></span></a><a class="DeleteButton" href="@Url.Action("Delete", new { id = item.Id })"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

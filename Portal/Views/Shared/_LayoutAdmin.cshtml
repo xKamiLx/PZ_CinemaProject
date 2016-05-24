@@ -1,15 +1,13 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "_LayoutAdmin";
 }
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <title>Admin Panel</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap.css")
@@ -19,20 +17,170 @@
 </head>
 
 <body>
-   
-        <div class="row">
-            <div class="col-md-3">
+    <div class="row">
+       
+        <!-- Menu -->
+        <div class="side-menu">
 
-                <!--Sidebar-->
+            <nav class="navbar navbar-default" role="navigation">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+
+                <div class="navbar-header">
+                    <div class="brand-wrapper">
+
+                        <!-- Hamburger -->
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <!-- Brand -->
+                        <div class="brand-name-wrapper">
+                            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                                <span class="glyphicon glyphicon-home"></span>
+                                Home
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Main Menu -->
+                <div class="side-menu-container">
+                    <ul class="nav navbar-nav">
+
+                        
+                        <!-- Filmy -->
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#dropdown-lvl1">
+                                Filmy
+                                <span class="caret"></span>
+                            </a>
+                            <div id="dropdown-lvl1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("Index", "Movies")">
+                                                <span class="glyphicon glyphicon-hand-right"></span>
+                                                Wyświetl
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Create", "Movies")">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                Dodaj
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Wpisy -->
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#dropdown-lvl2">
+                                Wpisy
+                                <span class="caret"></span>
+                            </a>
+                            <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("Index", "News")">
+                                                <span class="glyphicon glyphicon-hand-right"></span>
+                                                Wyświetl
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Create", "News")">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                Dodaj
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Seanse -->
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#dropdown-lvl3">
+                                Seanse
+                                <span class="caret"></span>
+                            </a>
+                            <div id="dropdown-lvl3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("Index", "Shows")">
+                                                <span class="glyphicon glyphicon-hand-right"></span>
+                                                Wyświetl
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Create", "Shows")">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                Dodaj
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Użytkownicy -->
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#dropdown-lvl4">
+                                Użytkownicy
+                                <span class="caret"></span>
+                            </a>
+                            <div id="dropdown-lvl4" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("Index", "Users")">
+                                                <span class="glyphicon glyphicon-hand-right"></span>
+                                                Wyświetl
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container-fluid">
+            <div class="side-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+        
+          <!--
+              <div class="col-md-3">
+
+                
 
                 <div class="nav-side-menu">
                     <div class="brand">
                         <a href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span>
                          Home
                         </a>
+                        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
                     </div>
 
-                    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                   
 
                     <div class="menu-list">
 
@@ -110,23 +258,25 @@
                     </div>
                 </div>
             </div>
+          -->  
 
             <!--End of Sidebar-->
 
             <!--Main content-->
-            <div class="col-md-9">
+           <!--
+               <div class="col-md-9">
                 <div id="page-content-wrapper">
                     <div class="container body-content">
-                        @RenderBody()
-
+                       
                     </div>
                 </div
-                <!-- /#page-content-wrapper -->
+                <!-- /#page-content-wrapper 
                 <div class="container"><hr /></div>
                 
             </div>
-        </div>
-
+           --> 
+      
+   
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
