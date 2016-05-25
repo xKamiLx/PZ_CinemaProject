@@ -19,7 +19,6 @@ namespace Portal.ViewModels
 
         public Room Room { get; set; }
 
-        [Required]
         public Movie Movie { get; set; }
 
         public int SelectedMovieId { get; set; }
