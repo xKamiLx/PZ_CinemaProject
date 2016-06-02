@@ -4,65 +4,203 @@
 }
 
 @{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+@{decimal price = Model.Price; }
 
+
+<script src="~/Scripts/jquery-1.10.2.min.js"> var price = '<%=price%>'</script>
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#btNext").click(function () {
+            $("input[name='place']").attr("checked");
+        });
+
+        //(alert on click button)
+        $("#btnSubmit").click(function () {
+            var checkedIds = $(":checkbox:checked").map(function () {
+                return this.id;
+            }).get();
+            $selected = checkedIds;
+            $("divb").text("Wybrane miesjca to: " + checkedIds);
+            alert("Wybrane miejsca: " + checkedIds);
+            return false;
+        });
+
+
+        //JS function showing which places were checked
+        var countChecked = function () {
+            var n = $("input:checked").length;
+            $("#Summary").visible = true;
+            $("diva").text("Wybrałeś " + n + (n === 1 ? " miejsce o numerze: " : " miejsca o numerach: "));
+
+            price = parseInt(n) * parseInt(@price);
+            $("divd").text(price);
+
+            var checkedIds = $(":checkbox:checked").map(function () {
+            return this.id;
+            }).get();
+            document.getElementById("Hidden1").value = checkedIds;
+            $("divb").text(": " + checkedIds);
+
+
+        };
+        countChecked();
+        $("input[type=checkbox]").on("click", countChecked);
+
+        var isdiscount = 0;
+
+        $("#discountlist").click(function () {
+
+            var x = document.getElementById("discountlist").value;
+            $("divc").text(x);
+
+                price = parseInt(price) - parseInt(x) * parseInt(@price);
+                
+
+
+            $("divd").text("Andrzej " + price);
+        });
+
+        
+
+        $("#btn-del-disscount").click(function () {
+
+            $("#discountlist").value = 0;
+            isdiscount = 0;
+            
+        });
+    });
+
+
+    function submitForm() {
+
+        var model = new Object();
+
+        model.place = checkedIds;
+        model.IsPaid = 0;
+        model.Discount = 0;
+        model.ApplicationUser =
+
+        place = ticket.Place;
+        IsPaid = ticket.IsPaid;
+        Discount = ticket.Discount;
+        ApplicationUser = ticket.ApplicationUser;
+        Show = ticket.Show;
+
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("CreateCover")",
+            dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ coordinates: model }),
+        success: function (data) {
+            alert(data);
+        },
+        failure: function (errMsg) {
+            alert(errMsg);
+        }
+    });
+    }
+
+
+</script>
 <div class="container">
 
     <h2 class="panel-heading">Kupno biletów na film: <b> @Html.DisplayTextFor(x => x.Movie.Title) </b> </h2>
-   @{string places = Model.Places; }
+   
+    <!---pobranie nazwy usera usera -->
+    @using Microsoft.AspNet.Identity
 
+    @{string username = User.Identity.GetUserName(); }
 
     <p> String z zajętymi miejscami</p>
+
+    @{string places = Model.Places; }
+
+    
     @Html.DisplayTextFor(x => x.Places)
 
+    Cena model:
+  
+    @price;
 
     <hr />
 
     @using (Html.BeginForm())
     {
+
+        
         @Html.AntiForgeryToken()
 
         <div class="row">
             <div class="col-md-8">
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Id)
-
+                   
                     
+                        <form>
+                            
+                            @for (int i = 0; i <= 50; i++)
+                            //loop generates room View with free places
+                            {
+                                 
+                                if (places[i] == '0')
+                                {
 
-                    @for (int i = 0; i <= 50; i++)
-                    {
-                        if (places[i] == '0')
-                        {
-                            <input id="@i" name="place_@i" type="button" value=@i class="btn btn-primary" />
+                                    <label class="btn btn-primary btn-group">
+                                        <input id="@i" type="checkbox" name="place" autocomplete="off">  @i
+                                    </label>
 
-                        }
+                                }
 
-                        if (places[i] == '1')
-                        {
-                            <input id="@i" disabled name="place_@i" type="button" value=@i class="btn btn-primary" />
+                                if (places[i] == '1')
+                                {
+                                    <label class="btn btn-danger">
+                                        <input id="@i" type="checkbox" name="place" autocomplete="off" disabled>  @i 
+                                    </label>
+                                }
 
-                        }
+                                if (i != 0 && i % 10 == 0)
+                                {
+                                    <br>
+                                }
 
-                        if (i % 10 == 0)
-                        { <br> }
-                                                
-                    }
+                            }
+                        </form>
 
-                    
-
-
-
-    
 
                     <div class="form-group">
                         <div class="col-md-offset-6">
-                            <input type="submit" value="Zapisz" class="btn btn-primary" />
+                            
+                            
+
                         </div>
                     </div>
+                    
                 </div>
+
+                <input type="submit" id="btnSubmit" value="Zakup biletów" class="btn btn-primary" />
+
             </div>
         </div>
     }
+
+     <div id="Summary" >
+        <div>Miejsca:</div>
+
+        <diva></diva>
+        <divb></divb>
+        <div>Ilość biletów ze zniżką:<divc></divc> </div> 
+
+        <input id="discountlist" type="number" min="0" max="5" value="1"/>
+         
+        <input type="submit" id="btn-del-disscount" value="Usun znizki" class="btn btn-primary" />
+
+        <div>Cena biletów: <divd></divd></div>
+        
+
+        <input id="Hidden1" type="hidden" />
+    </div>
+
     <div>
         @Html.ActionLink("Powrót do listy", "Index")
     </div>

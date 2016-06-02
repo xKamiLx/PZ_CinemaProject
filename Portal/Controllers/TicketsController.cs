@@ -66,6 +66,9 @@ namespace Portal.Controllers
             }
 
             TicketsViewModel ticketsViewModel = new TicketsViewModel(show);
+
+            ApplicationUser applicationuser = Db.Users.First(x => x.UserName == User.Identity.Name);
+            ticketsViewModel.ApplicationUser = applicationuser;
             var moviesList = Db.Movies.Select(x => new SelectListItem()
             {
                 Text = x.Title,
@@ -96,13 +99,23 @@ namespace Portal.Controllers
             {
                 Room room = Db.Rooms.Find(ticketsViewModel.SelectedRoomId);
                 Movie movie = Db.Movies.Find(ticketsViewModel.SelectedMovieId);
+                ApplicationUser applicationuser = Db.Users.First(x => x.UserName == User.Identity.Name);
+
+                Ticket ticket = new Ticket();
+                ticket.ApplicationUser = applicationuser;
+                ticketsViewModel.ApplicationUser = applicationuser;
+                
 
                 Show show = Db.Shows.Find(ticketsViewModel.Id);
                 show.DateTimeShow = ticketsViewModel.DateTimeShow;
                 show.Movie = movie;
                 show.Room = room;
+               
+                
+               
 
 
+                
                 // tworzenie nowego biletu
 
                 /*
@@ -117,8 +130,9 @@ namespace Portal.Controllers
 
                 Db.Tickets.Add(ticket);
                 Db.SaveChanges();
+           
+                */
         
-            */
     
     // podmiana zajętych miejsc
 
