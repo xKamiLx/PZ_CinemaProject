@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
+using DAL.Models;
+using Portal.ViewModels;
 
 namespace Portal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            List<News> dbNewses = Db.Newses.ToList();
+            List<NewsViewModel> newses = dbNewses.Select(dbNews => new NewsViewModel(dbNews)).ToList();
+
+            return View(newses);
         }
 
         public ActionResult About()
