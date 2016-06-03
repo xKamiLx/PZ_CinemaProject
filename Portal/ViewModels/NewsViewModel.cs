@@ -21,7 +21,7 @@ namespace Portal.ViewModels
 
         [Required]
         [Display(Name = "Opis")]
-        [StringLength(100, ErrorMessage = "Długość opisu musi składać się od 6-10 znaków.", MinimumLength = 6)]
+        [StringLength(1000, ErrorMessage = "Długość opisu musi składać się od 6-1000 znaków.", MinimumLength = 6)]
         public string Description { get; set; }
 
         public DateTime AddedDateTime { get; set; }
