@@ -271,6 +271,8 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Tickets\Buy.cshtml" />
+    <Content Include="Views\Shared\_LayoutTicket.cshtml" />
+    <Content Include="Views\Manage\Tickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

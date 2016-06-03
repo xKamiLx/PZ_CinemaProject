@@ -12,7 +12,7 @@ using Portal.ViewModels;
 
 namespace Portal.Controllers
 {
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "U¿ytkownik, Administrator")]
     public class TicketsController : BaseController
     {
         // GET: Shows
@@ -24,35 +24,8 @@ namespace Portal.Controllers
             return View(shows);
         }
 
-
-        // POST: Shows/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create_Ticket1(ShowViewModel showViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Room room = Db.Rooms.Find(showViewModel.SelectedRoomId);
-                Movie movie = Db.Movies.Find(showViewModel.SelectedMovieId);
-                Show show = new Show()
-                {
-                    DateTimeShow = DateTime.Now,
-                    Places = "00000000000000000000000000000000000000000000000000",
-                    Room = room,
-                    Movie = movie,
-                };
-                Db.Shows.Add(show);
-                Db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
-
-            return View(showViewModel);
-        }
-
-        // GET: Shows/Edit/5
+        
+        // GET: Ticket/Buy
         public ActionResult Buy(int? id)
         {
             if (id == null)
@@ -93,57 +66,27 @@ namespace Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create_ticket(TicketsViewModel ticketsViewModel)
+        public ActionResult Buy(TicketsViewModel ticketsViewModel)
         {
             if (ModelState.IsValid)
             {
-                Room room = Db.Rooms.Find(ticketsViewModel.SelectedRoomId);
-                Movie movie = Db.Movies.Find(ticketsViewModel.SelectedMovieId);
-                ApplicationUser applicationuser = Db.Users.First(x => x.UserName == User.Identity.Name);
-
-                Ticket ticket = new Ticket();
-                ticket.ApplicationUser = applicationuser;
-                ticketsViewModel.ApplicationUser = applicationuser;
-                
-
-                Show show = Db.Shows.Find(ticketsViewModel.Id);
-                show.DateTimeShow = ticketsViewModel.DateTimeShow;
-                show.Movie = movie;
-                show.Room = room;
-               
-                
-               
-
-
-                
-                // tworzenie nowego biletu
-
-                /*
                 Ticket ticket = new Ticket()
                 {
-                    Place = 1,
-                    IsPaid = 0,
-                    Discount = 0,
-                    ApplicationUser = "1",
-                    Show = ticketsViewModel.Id,
+
+                Place = ticketsViewModel.Place,
+                IsPaid = false,
+                Discount = false,
+                Price = ticketsViewModel.SummaryPrice,
+                ApplicationUser = Db.Users.First(x => x.UserName == User.Identity.Name),
+                Show = ticketsViewModel.Show
                 };
 
                 Db.Tickets.Add(ticket);
                 Db.SaveChanges();
-           
-                */
-        
-    
-    // podmiana zajętych miejsc
-
-
-
-
-        Db.Entry(show).State = EntityState.Modified;
-                Db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
+           
             return View(ticketsViewModel);
         }
     

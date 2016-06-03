@@ -13,7 +13,6 @@ namespace Portal.ViewModels
     {
         public int Id { get; set; }
 
-        [Required]
         public DateTime DateTimeShow { get; set; }
 
         public Room Room { get; set; }
@@ -32,6 +31,8 @@ namespace Portal.ViewModels
 
         public decimal Price { get; set; }
 
+        public float SummaryPrice { get; set; }
+
         public Ticket Ticket { get; set; }
 
         
@@ -45,18 +46,20 @@ namespace Portal.ViewModels
 
         //public string ApplicationUser { get; set; }
 
-        public TicketsViewModel(Ticket ticket)
+        public TicketsViewModel()
         {
-            Place = ticket.Place;
-            IsPaid = ticket.IsPaid;
-            Discount = ticket.Discount;
-            ApplicationUser = ticket.ApplicationUser;
-            Show = ticket.Show;
-            
         }
+
+        public TicketsViewModel(string place, float SummaryPrice)
+        {
+            this.SummaryPrice = SummaryPrice;
+            this.Place = place;
+        }
+
 
         public TicketsViewModel(Show show)
         {
+            this.Show = show;
             Id = show.Id;
             DateTimeShow = show.DateTimeShow;
             Room = show.Room;

@@ -3,28 +3,25 @@
     ViewBag.Title = "Kupno biletów";
 }
 
-@{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+@{Layout = "~/Views/Shared/_Layout.cshtml";}
 @{decimal price = Model.Price; }
-
-
+@{string places = Model.Places; }
+@{string choosenplaces = Model.Places; }
 <script src="~/Scripts/jquery-1.10.2.min.js"> var price = '<%=price%>'</script>
 <script type="text/javascript" language="javascript">
     $(function () {
         $("#btNext").click(function () {
             $("input[name='place']").attr("checked");
         });
-
         //(alert on click button)
         $("#btnSubmit").click(function () {
             var checkedIds = $(":checkbox:checked").map(function () {
                 return this.id;
             }).get();
-            $selected = checkedIds;
             $("divb").text("Wybrane miesjca to: " + checkedIds);
-            alert("Wybrane miejsca: " + checkedIds);
+            alert("Wybrane miejsca: " + checkedIds + " Cena: " + price);
             return false;
         });
-
 
         //JS function showing which places were checked
         var countChecked = function () {
@@ -36,146 +33,151 @@
             $("divd").text(price);
 
             var checkedIds = $(":checkbox:checked").map(function () {
-            return this.id;
+                return this.id;
             }).get();
             document.getElementById("Hidden1").value = checkedIds;
-            $("divb").text(": " + checkedIds);
-
+            $("divb").text( checkedIds);
 
         };
         countChecked();
         $("input[type=checkbox]").on("click", countChecked);
 
-        var isdiscount = 0;
 
         $("#discountlist").click(function () {
 
+        });
+
+        var clicked = 0;
+        $("#btn-disscount").click(function () {
+
             var x = document.getElementById("discountlist").value;
             $("divc").text(x);
-
-                price = parseInt(price) - parseInt(x) * parseInt(@price);
-                
-
-
-            $("divd").text("Andrzej " + price);
+            if (clicked == 0) {
+                price = parseInt(price) - parseInt(x) / 2 * parseInt(@price);
+                clicked = 1;
+            }
+            $("divd").text("ze zniżką: " + price);
         });
 
-        
+        $("#xD").click(function () {
+            var ticketViewModel = new Object();
+            ticketViewModel.Place = "1";
+            ticketViewModel.SummaryPrice = ParseInt(3);
 
-        $("#btn-del-disscount").click(function () {
+            jQuery.ajax({
+                type: "POST",
+                url: "@Url.Action("Buy")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ coordinates: ticketViewModel }),
+                success: function (data) {
+                    alert(data);
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
 
-            $("#discountlist").value = 0;
-            isdiscount = 0;
-            
         });
     });
-
-
-    function submitForm() {
-
-        var model = new Object();
-
-        model.place = checkedIds;
-        model.IsPaid = 0;
-        model.Discount = 0;
-        model.ApplicationUser =
-
-        place = ticket.Place;
-        IsPaid = ticket.IsPaid;
-        Discount = ticket.Discount;
-        ApplicationUser = ticket.ApplicationUser;
-        Show = ticket.Show;
-
-        jQuery.ajax({
-            type: "POST",
-            url: "@Url.Action("CreateCover")",
-            dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ coordinates: model }),
-        success: function (data) {
-            alert(data);
-        },
-        failure: function (errMsg) {
-            alert(errMsg);
-        }
-    });
-    }
-
 
 </script>
+<br />
 <div class="container">
 
     <h2 class="panel-heading">Kupno biletów na film: <b> @Html.DisplayTextFor(x => x.Movie.Title) </b> </h2>
-   
+
     <!---pobranie nazwy usera usera -->
     @using Microsoft.AspNet.Identity
 
     @{string username = User.Identity.GetUserName(); }
-
-    <p> String z zajętymi miejscami</p>
-
-    @{string places = Model.Places; }
-
     
-    @Html.DisplayTextFor(x => x.Places)
-
-    Cena model:
-  
-    @price;
-
+       
+    <div class="col-md-2"> Cena normalna:
+            @price
+    </div>
+    <br /> 
     <hr />
 
     @using (Html.BeginForm())
     {
 
-        
+
         @Html.AntiForgeryToken()
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-4">
+                @Html.Label("Ręczny wybór biletów:")
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                   
-                    
-                        <form>
-                            
-                            @for (int i = 0; i <= 50; i++)
-                            //loop generates room View with free places
+                    <div class="form-group">
+                        
+                        <div class="col-md-6">
+                            @Html.Label("Cena:")
+                            @Html.EditorFor(model => model.SummaryPrice, new { htmlAttributes = new { @class = "form-control", placeholder = "Cena" } })                            
+                            @Html.Label("Miejsca:")
+                            @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control", placeholder = "Miejsca 21,22" } })
+                    </div>
+                    </div>                
+                                      
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input type="submit" id="btn"value="Dodaj" class="btn btn-primary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="form-horizontal">
+
+                    <div class="row">
+                        <div class="col-md-8">
+
+                          
+                        </div>
+                    </div>
+
+                    <form>
+
+                        @for (int i = 0; i <= 50; i++)
+                        //loop generates room View with free places
+                        {
+
+                            if (places[i] == '0')
                             {
-                                 
-                                if (places[i] == '0')
-                                {
-
-                                    <label class="btn btn-primary btn-group">
-                                        <input id="@i" type="checkbox" name="place" autocomplete="off">  @i
-                                    </label>
-
-                                }
-
-                                if (places[i] == '1')
-                                {
-                                    <label class="btn btn-danger">
-                                        <input id="@i" type="checkbox" name="place" autocomplete="off" disabled>  @i 
-                                    </label>
-                                }
-
-                                if (i != 0 && i % 10 == 0)
-                                {
-                                    <br>
-                                }
-
+                                <label class="btn btn-primary btn-group">
+                                    <input id="@i" type="checkbox" name="place" autocomplete="off">  @i
+                                </label>
                             }
-                        </form>
+
+                            if (places[i] == '1')
+                            {
+                                <label class="btn btn-danger">
+                                    <input id="@i" type="checkbox" name="place" autocomplete="off" disabled>  @i
+                                </label>
+                            }
+
+                            if (i != 0 && i % 10 == 0)
+                            {
+                                <br>
+                            }
+
+                        }
+                    </form>
 
 
                     <div class="form-group">
                         <div class="col-md-offset-6">
-                            
-                            
+
+
 
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <input type="submit" id="btnSubmit" value="Zakup biletów" class="btn btn-primary" />
@@ -183,27 +185,24 @@
             </div>
         </div>
     }
-
-     <div id="Summary" >
-        <div>Miejsca:</div>
+    <br />
+    <div id="Summary" class="col-lg-8">
 
         <diva></diva>
         <divb></divb>
-        <div>Ilość biletów ze zniżką:<divc></divc> </div> 
+        <div>Ilość biletów ze zniżką:<divc></divc> </div>
 
-        <input id="discountlist" type="number" min="0" max="5" value="1"/>
-         
-        <input type="submit" id="btn-del-disscount" value="Usun znizki" class="btn btn-primary" />
+        <input id="discountlist" type="number" min="0" max="50" value="0" />
 
-        <div>Cena biletów: <divd></divd></div>
-        
+        <input type="submit" id="btn-disscount" value="Oblicz znizki" class="btn btn-primary" />
+
+        <div class="h2">Cena biletów <divd></divd></div>
+
 
         <input id="Hidden1" type="hidden" />
     </div>
 
-    <div>
-        @Html.ActionLink("Powrót do listy", "Index")
-    </div>
+   
 </div>
 
 

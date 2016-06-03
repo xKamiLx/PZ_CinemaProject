@@ -99,6 +99,13 @@ namespace Portal.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
+        // GET: /Manage/AddPhoneNumber
+        public ActionResult Tickets()
+        {
+            return View();
+        }
+
+
         //
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
