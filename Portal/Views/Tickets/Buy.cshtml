@@ -90,9 +90,10 @@
     <!---pobranie nazwy usera usera -->
     @using Microsoft.AspNet.Identity
 
-    @{string username = User.Identity.GetUserName(); }
-    
-       
+ 
+    @{ string username = User.Identity.GetUserName(); }
+
+
     <div class="col-md-2"> Cena normalna:
             @price
     </div>
@@ -117,7 +118,9 @@
                             @Html.EditorFor(model => model.SummaryPrice, new { htmlAttributes = new { @class = "form-control", placeholder = "Cena" } })                            
                             @Html.Label("Miejsca:")
                             @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control", placeholder = "Miejsca 21,22" } })
-                    </div>
+                            @Html.Label("Zajęte miejsca:")
+                            @Html.EditorFor(model => model.Places, new { htmlAttributes = new { @class = "form-control", placeholder = "Miejsca 21,22" } })
+                         </div>
                     </div>                
                                       
                     <div class="form-group">

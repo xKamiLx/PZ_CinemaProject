@@ -78,10 +78,16 @@ namespace Portal.Controllers
                 Discount = false,
                 Price = ticketsViewModel.SummaryPrice,
                 ApplicationUser = Db.Users.First(x => x.UserName == User.Identity.Name),
-                Show = ticketsViewModel.Show
+                Show = ticketsViewModel.Show              
                 };
 
                 Db.Tickets.Add(ticket);
+                Db.SaveChanges();
+
+                Show show = Db.Shows.Find(ticketsViewModel.Id);
+                show.Places = ticketsViewModel.Places;
+
+                Db.Entry(show).State = EntityState.Modified;
                 Db.SaveChanges();
 
                 return RedirectToAction("Index");
